@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 import styles from './UsersList.css';
 
@@ -23,7 +23,7 @@ const UsersList = props => (
 );
 
 UsersList.propTypes = {
-	messages: PropTypes.array.isRequired
+	users: PropTypes.array.isRequired
 };
 
 export default UsersList;

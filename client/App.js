@@ -44,9 +44,7 @@ class App extends Component {
 
 
 	render() {
-		return this.state.name !== '' ? (
-			this.renderLayout() 
-			): this.renderUserForm();//pokazuje czata jak jest podane imie usera
+		return this.state.name !== '' ? this.renderLayout() : this.renderUserForm();//pokazuje czata jak jest podane imie usera
 	}
 
 	renderLayout() {

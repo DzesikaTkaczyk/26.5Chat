@@ -18,5 +18,5 @@ class UsersService {
   removeUser(userId) {
     this.users = this.users.filter(user => user.id !== userId);
   }
-}//to jest chyba do aktualizowania listy userów
+}
 module.exports = UsersService;

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 import styles from './UserForm.css';
 
@@ -33,7 +33,7 @@ class UserForm extends Component {
 }
 
 UserForm.propTypes = {
-  onMessageSubmit: PropTypes.func.isRequired
+  onUserSubmit: PropTypes.func.isRequired
 };
 
 
