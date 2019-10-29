@@ -20,31 +20,31 @@ class App extends Component {
 	componentDidMount() {
 		socket.on('message', message => this.messageReceive(message));
 		socket.on('update', ({users}) => this.chatUpdate(users));
-	}//nasłuchuje 
+	}//socket listener 
 
 	messageReceive(message) {
 		const messages = [message, ...this.state.messages];
 		this.setState({messages});
-	}//odbiera wiadomośc i aktualizuje tablice z wiadomosciami
+	}//get the message and updates the array
 
 	chatUpdate(users) {
 		this.setState({users});
-	}//aktualizuje liste userów
+	}//update user list
 
 	handleMessageSubmit(message) {
 		const messages = [message, ...this.state.messages];
-		this.setState({messages});//aktualizacja stanu
-		socket.emit('message', message);//aktualziacja wyswietlania
-	}//wysyła wiadomosc do serwera
+		this.setState({messages});//state update
+		socket.emit('message', message);//display message
+	}//sending message to server
 
 	handleUserSubmit(name) {
 		this.setState({name});
-		socket.emit('join', name);//emituje powadiomienie 
-	}//tworzenie nowego usera
+		socket.emit('join', name);//emits notification
+	}//create new user
 
 
 	render() {
-		return this.state.name !== '' ? this.renderLayout() : this.renderUserForm();//pokazuje czata jak jest podane imie usera
+		return this.state.name !== '' ? this.renderLayout() : this.renderUserForm();//renders chat when user name is provided
 	}
 
 	renderLayout() {

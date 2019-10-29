@@ -14,14 +14,14 @@ class MessageForm extends Component {
     const message = {
       from : this.props.name,
       text : this.state.text
-    };//robie wiadomosc:tekst + nadawca pobrany z probsów
-    this.props.onMessageSubmit(message);//przekazuje tekst do tablicy na wiadomosci
-    this.setState({ text: '' });//czyści okienko inputa
-  }//wysłanie nowej wiadomosci
+    };//create message: text + sender form props
+    this.props.onMessageSubmit(message);//pass message to array
+    this.setState({ text: '' });//clear input window
+  }//send new message
 
   changeHandler(e) {
     this.setState({ text : e.target.value });
-  }//aktualizuje watrosc inputa
+  }//update input
 
   render() {
     return(

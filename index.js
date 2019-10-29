@@ -14,15 +14,15 @@ app.get('/', (req, res) => {
 	res.sendFile(`${__dirname}/index.html`);
 });
 
-io.on('connection', (socket) => { //socket reprezentuje osobe ktora wlasnie weszła
-	// klient nasłuchuje na wiadomość wejścia do czatu
-	socket.on('join', (name) => {//nasłuchiwanie join
-		// użytkownika, który pojawił się w aplikacji, zapisujemy do serwisu trzymającego listę osób w czacie
+io.on('connection', (socket) => { //socket represents new user in the chat
+	// client is listening for a new user message
+	socket.on('join', (name) => {//listening for a join
+		// add new user to users list
 		usersService.addUser({
 			id: socket.id,
 			name
 		});
-		// aplikacja emituje zdarzenie update, które aktualizuje informację na temat listy użytkowników każdemu nasłuchującemu na wydarzenie 'update'
+		// emit user list update to other users
 		io.emit('update', {
 			users: usersService.getAllUsers()
 		});
@@ -30,7 +30,7 @@ io.on('connection', (socket) => { //socket reprezentuje osobe ktora wlasnie wesz
 
 	socket.on('message', (message) => {
 		const {name} = usersService.getUserById(socket.id);
-		socket.broadcast.emit('message', {//broadcast.emit wiadomosc wysyla sie pozostalych userów, ale nie do autora
+		socket.broadcast.emit('message', {//broadcast.emit - message is send to everyone but the sender
 			text: message.text,
 			from: name
 		});
@@ -38,7 +38,7 @@ io.on('connection', (socket) => { //socket reprezentuje osobe ktora wlasnie wesz
 
 	socket.on('disconnect', () => {
 		usersService.removeUser(socket.id);
-		socket.broadcast.emit('update', { //wysyla ostatnia wiadomosc- info o wyjsciu z czata i aktualizacja listy userów
+		socket.broadcast.emit('update', { //emit leave chat and update user list 
 			users: usersService.getAllUsers()
 		});
 	});

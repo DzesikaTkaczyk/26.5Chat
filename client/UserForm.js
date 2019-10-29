@@ -12,12 +12,12 @@ class UserForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.onUserSubmit(this.state.name);
-  }//zapobiega domyslemu zachowaniu formualrza i przekazuje tkst z pola
+  }
 
   handleChange(e) {
     this.setState({ name : e.target.value });
-  }//odbiera wartosc z inputa polaczonego z eventem i zmienia tekst
-
+  }//gets event as an input and changes text on that basis
+  
   render() {
     return(
       <form className={styles.UserForm} onSubmit={e => this.handleSubmit(e)}>
