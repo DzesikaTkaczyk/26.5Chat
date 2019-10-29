@@ -6,7 +6,7 @@ const UsersService = require('./UsersService')
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
-const usersService = UsersService();
+const usersService = new UsersService();
 
 app.use(express.static(`${__dirname}/public`));
 
